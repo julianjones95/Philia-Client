@@ -24,7 +24,7 @@ export default function LoginScreen() {
 
   const onPress = () => {
 
-    navigation.navigate('Home'); // Takes user to the home screen
+    navigation.navigate('Map'); // Takes user to the home screen
 
   }
   
@@ -47,7 +47,7 @@ export default function LoginScreen() {
 
       <View style={styles.password} >
           <TextInput
-         style={styles.input}
+          style={styles.input}
           value = {password}
           onChangeText = {setPassword}
           placeholder="Password . . ."

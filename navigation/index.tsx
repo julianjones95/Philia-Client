@@ -13,6 +13,7 @@ import { View, Text, ColorSchemeName, Pressable } from 'react-native';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/LoginScreen';
+import MapScreen from '../screens/MapScreen';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
@@ -39,6 +40,7 @@ function RootNavigator() {
   return (
     <Stack.Navigator >
       <Stack.Screen name="Login" component={LoginScreen}   />
+      <Stack.Screen name="Map" component={MapScreen}   />
       <Stack.Screen name="Home" component={HomeScreen} options ={{ headerTitle: "My Chats"}}  />
       <Stack.Screen name="ChatRoom" component={ChatRoomScreen} options ={{ headerTitle: ChatRoomHeader}} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} /> 
