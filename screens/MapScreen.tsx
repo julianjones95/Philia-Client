@@ -1,13 +1,12 @@
 import React , {useState, useEffect} from 'react';
-import { TextInput, Platform, Text, View, StyleSheet, Pressable} from 'react-native';
+import { Dimensions, TextInput, Platform, Text, View, StyleSheet, Pressable} from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/core';
 import { withSafeAreaInsets } from 'react-native-safe-area-context';
 import LoginQuery from '../components/LoginQuery';
 import * as Location from 'expo-location';
+import  MapView  from 'react-native-maps';
+import { Marker } from 'react-native-maps';
 //import ChatRoomData from '../assets/dummy-data/ChatRoom';
-
-
-
 
 
 
@@ -35,6 +34,12 @@ export default function App() {
   
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
+    const [region, setRegion] = useState({
+      latitude: 37.78825,
+      longitude: -122.4324,
+      latitudeDelta: 0.005,
+      longitudeDelta: 0.005,
+    });
   
     useEffect(() => {
       (async () => {
@@ -46,6 +51,13 @@ export default function App() {
   
         let location = await Location.getCurrentPositionAsync({});
         setLocation(location);
+        setRegion({
+          latitude: a,
+          longitude: b,
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005,
+        })
+
       })();
     }, []);
   
@@ -56,21 +68,48 @@ export default function App() {
     } else if (location) {
       latitude = JSON.stringify(location.coords.latitude);
       longitude = JSON.stringify(location.coords.longitude);
+      var a = parseFloat(latitude)
+      var b = parseFloat(longitude)
+
+     
     }
-  
+
     
 
+    
+
+
+
+
+
   return (
+
+    
     <View style={styles.page}>
             
 
   
         
       <View >
-        <Text >({ latitude} ,{ longitude})</Text> 
+        <Text >({ a} ,{ b})</Text> 
        
       </View>
-      
+
+
+      <View style={styles.container}>
+          <MapView 
+          style={styles.map}     
+          region={region} >
+            <Marker 
+              coordinate = {{ latitude : a , longitude : b}}
+              title= "My Location"
+              pinColor = "pink"
+            />
+            
+          </MapView>
+         
+      </View>
+       
 
       <Pressable style={styles.buttonContainer} onPress={onPress} >
           
@@ -105,6 +144,11 @@ const styles = StyleSheet.create({
     
   },
 
+  map: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  },
+  
   container: {
     flex: 1,
     alignItems: 'center',
