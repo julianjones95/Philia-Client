@@ -7,7 +7,7 @@ export default function LoginQuery(userEmail: any){
     
     const [LoginData, setLoginData] = useState([]);
     useEffect(() => {
-      fetch('http://www.smartcall.tech:3000/login', {
+      fetch('http://192.168.2.32:3000/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

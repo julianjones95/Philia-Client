@@ -7,7 +7,7 @@ export default function ChatRoomQuery(){
     
     const [chatRoomsData, setchatRoomsData] = useState([]);
     useEffect(() => {
-      fetch('http://www.smartcall.tech:3000/graphql', {
+      fetch('http://192.168.2.32:3000/graphql', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
